@@ -33,15 +33,14 @@
 							<td><%= l.getTown() %></td>
 							<td><%= l.getO_name() %></td>
 							<td><%= l.getFounding() %></td>
-
 						</tr>
 					<%
 						}
 					%>
 				</table>
 				<br/>
-			<form action="playerUpdate.do">
-				<input type="submit" value="선수 등록" name="BTN"/>
+			<form action="putPlayerNlist.do" method="get">
+				<input type="button" value="선수 등록" name="BTN" onClick=""/>
 				<input type="submit" value="선수 목록" name="BTN"/>
 			</form>
 		</div>
