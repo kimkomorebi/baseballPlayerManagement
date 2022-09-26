@@ -15,7 +15,7 @@ import dbe.DBExpert;
 /**
  * Servlet implementation class putPlayerNlistServlet
  */
-@WebServlet("/putPlayerNlist.do")
+@WebServlet("/PlayerList.do")
 public class putPlayerNlistServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

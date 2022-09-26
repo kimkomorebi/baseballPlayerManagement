@@ -39,9 +39,9 @@
 					%>
 				</table>
 				<br/>
-			<form action="putPlayerNlist.do" method="get">
-				<input type="button" value="선수 등록" name="BTN" onClick=""/>
-				<input type="submit" value="선수 목록" name="BTN"/>
+			<form action="PlayerList.do" method="get">
+				<input type="button" value="선수 등록" onClick=""/>
+				<input type="submit" value="선수 목록"/>
 			</form>
 		</div>
 	</section>

@@ -24,7 +24,7 @@
 		}
 	%>
 	<script type="text/javascript">
-		location.href="putPlayerNlist.do";
+		location.href="PlayerList.do";
 	</script>
 </body>
 </html>
