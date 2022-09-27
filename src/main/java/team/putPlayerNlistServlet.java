@@ -25,7 +25,7 @@ public class putPlayerNlistServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//request.setCharacterEncoding("EUC-KR");
-		String btn = request.getParameter("BTN");
+		//String btn = request.getParameter("BTN");
 		DBExpert dbe = new DBExpert();
 		ArrayList<TeamList> list = dbe.getPlayerList();
 		request.setAttribute("LIST", list);
