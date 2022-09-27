@@ -40,11 +40,16 @@
 				</table>
 				<br/>
 			<form action="PlayerList.do" method="get">
-				<input type="button" value="선수 등록" onClick=""/>
+				<input type="button" value="선수 등록" onClick="registerPlayer()"/>
 				<input type="submit" value="선수 목록"/>
 			</form>
 		</div>
 	</section>
 	<jsp:include page="footer.jsp"></jsp:include>
+	<script type="text/javascript">
+		function registerPlayer(){
+			location.href="searchTeamName.do";
+		}
+	</script>
 </body>
 </html>

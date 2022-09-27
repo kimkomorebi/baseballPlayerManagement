@@ -12,7 +12,124 @@ public class DBExpert {
 	final private String driver = "oracle.jdbc.OracleDriver";//DB Drvier
 	final private String url = "jdbc:oracle:thin:@//localhost:1521/xe";//DB URL
 	
+	public boolean putPlayerTeam(TeamList tl) {
+		String insert = "insert into player_team_tbl values("
+				+"?,?,?,?,?)";
+		Connection con = null; PreparedStatement pstmt = null;
+		boolean result = false;
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url,"hr","hr");
+			pstmt = con.prepareStatement(insert);
+			pstmt.setInt(1, tl.getSeqno());
+			pstmt.setInt(2, tl.getT_id());
+			pstmt.setInt(3, tl.getAnn_sal());
+			pstmt.setString(4, null);
+			pstmt.setInt(5, tl.getB_num());
+			pstmt.executeUpdate();
+			con.commit();
+			result = true;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				pstmt.close(); con.close();
+			}catch(Exception e) {}
+		}
+		return result;
+	}
 	
+	public boolean putPlayerInfo(TeamList tl) {
+		String insert ="insert into baseball_player_tbl values("
+				+"?,?,?,to_date(?, 'YYYY/MM/DD'))";
+		Connection con = null; PreparedStatement pstmt = null;
+		boolean result = false;
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url,"hr","hr");
+			pstmt = con.prepareStatement(insert);
+			pstmt.setInt(1, tl.getSeqno());
+			pstmt.setString(2, tl.getName());
+			pstmt.setString(3, tl.getAddr());
+			pstmt.setString(4, tl.getBirth());
+			pstmt.executeUpdate();
+			con.commit();
+			result = true;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				pstmt.close(); con.close();
+			}catch(Exception e){}
+		}
+		return result;
+	}
+	
+	public int maxSeqno() {
+		String select ="select max(seqno) from baseball_player_tbl";
+		Connection con = null; PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int maxnum = -1;
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url,"hr","hr");
+			pstmt = con.prepareStatement(select);
+			rs = pstmt.executeQuery();
+			if(rs.next()) maxnum = rs.getInt(1);
+			maxnum += 1;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				rs.close(); pstmt.close(); con.close();
+			}catch(Exception e) {}
+		}
+		return maxnum;
+	}
+	public boolean playerTeamDelete(int seqno) {
+		String delete = "delete from player_team_tbl"
+				+" where seqno = ?";
+		Connection con = null; PreparedStatement pstmt = null;
+		boolean result = false;
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url,"hr","hr");
+			pstmt = con.prepareStatement(delete);
+			pstmt.setInt(1, seqno);
+			pstmt.executeUpdate();
+			con.commit();
+			result = true;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				pstmt.close(); con.close();
+			}catch(Exception e) {}
+		}
+		return result;
+	}
+	public boolean playerDelete(int seqno) {
+		String delete = "delete from baseball_player_tbl"
+				+" where seqno = ?";
+		Connection con = null; PreparedStatement pstmt = null;
+		boolean result = false;
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url,"hr","hr");
+			pstmt = con.prepareStatement(delete);
+			pstmt.setInt(1, seqno);
+			pstmt.executeUpdate();
+			con.commit();
+			result = true;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				pstmt.close(); con.close();
+			}catch(Exception e) {}
+		}
+		return result;
+	}
 
 	public boolean playerTeamUpdate(TeamList tl) {
 		String update = "update player_team_tbl set t_id=?, ann_sal=?,b_num=?"

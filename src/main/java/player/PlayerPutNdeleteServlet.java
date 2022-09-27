@@ -56,6 +56,13 @@ public class PlayerPutNdeleteServlet extends HttpServlet {
 				response.sendRedirect("playerUpdateResult.jsp?R=N");
 			}
 		}else if(btn.equals("ªË¡¶")) {
+			boolean delete1 = dbe.playerTeamDelete(Integer.parseInt(seqno));
+			boolean delete2 = dbe.playerDelete(Integer.parseInt(seqno));
+			if(delete1 && delete2) {
+				response.sendRedirect("playerDeleteResult.jsp?R=Y");
+			}else {
+				response.sendRedirect("playerDeleteResult.jsp?R=N");
+			}
 			
 		}
 	}
